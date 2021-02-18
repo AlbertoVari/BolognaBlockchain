@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<!--
+	BolognaBlockchain.com by Alberto Varignana
+-->
+<html>
+	<head>
+		<title>BolognaBlockchain.com by Alberto Varignana</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">BolognaBlockchain.com</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+<!--								<li><a href="footer">Data</a></li> -->
+								<li><a href="grid.html">Grid</a></a></li>
+<!--								<li><a href="#">Log In</a></li>
+								<li><a href="#">Sign Up</a></li>
+-->
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>BolognaBlockchain.com</h2>
+							<p>Register now your data on blockchain <a href="https://ethereum.org/">ETHEREUM</a></p>
+						</div>
+					</section>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Your data everywhere, forever</h2>
+										<p> Distribution ledger freeze your data on Ethereum contract without any possibility to modify or delete them</p>
+										<a href="https://etherscan.io/address/0xad1a0cab66d11462c86aca15c90b267153e0dca0" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Single source of Truth</h2>
+										<p>Same data are accessible to your business partners with a single click </p>
+											<a href="http://www.bolognablockchain.com/ziontest.html" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three" class="wrapper spotlight style3">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Metamask</h2>
+										<p>MetaMask is a bridge that allows you to visit the distributed web of tomorrow in your browser today. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node.</p>
+										<a href="https://metamask.io/" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Four -->
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Store data on blockchain </h2>
+							<p>You can post any data written on DATA field and store it on Ethereum clicking on SEND DATA button : try now</p>
+						
+								<div class="fields">
+									<div class="field">
+										<label for="name">Transaction Hash</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Block Height</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">DATA</label>
+										<textarea name="message" id="message" rows="1"></textarea>
+									</div>
+								</div>
+            <div>    <p style="visibility: hidden;">
+	Button
+</p>    </div>
+			<button onclick="setvalue()">SEND DATA</button>
+							
+
+						
+							<ul class="copyright">
+								<li>&copy; <a href="https://Varignana.it">Alberto Varignana</a>  All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+		    <script type="text/javascript">
+function setvalue() {
+try {
+window.ethereum.enable();
+if (typeof web3 !== 'undefined') {
+ web3 = new Web3(web3.currentProvider);
+} else {
+ // set the provider you want from Web3.providers
+ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
+// contract Abi defines all the variables,constants and functions of the smart contract. replace with your own abi
+var abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "num",
+				"type": "uint256"
+			}
+		],
+		"name": "store",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "retreive",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+
+autoRefreshOnNetworkChange = false; 
+//contract address. please change the address to your own
+var contractaddress = '0xad1a0cAB66D11462c86ACa15c90b267153E0dCa0';
+//instantiate and connect to contract address via Abi
+var myAbi = web3.eth.contract(abi);
+var myfunction = myAbi.at(contractaddress);
+//call the get function of our SimpleStorage contract
+
+var MyContract = web3.eth.contract(abi);
+var myContractInstance = MyContract.at('0x280B2C223e7269bF0d0afC10777A8bF69b702E79');
+
+
+web3.eth.defaultAccount = web3.eth.accounts[0];
+contractObj = web3.eth.contract(abi).at(contractaddress);
+
+var code = document.getElementById('message').value;
+codehex = web3.toHex(code);
+codestring = codehex.toString();
+var getData = contractObj.store.getData(codehex);
+
+
+
+web3.eth.sendTransaction({to:contractaddress , data: getData}, function(err, transactionHash) {
+   if(!err)
+       document.getElementById('name').value = transactionHash; 
+   else
+      console.error(err);
+});
+}
+catch (err) {
+console.log(err);
+}
+}
+</script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
